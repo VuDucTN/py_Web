@@ -1,0 +1,36 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}
+{% block header %}
+<!-- Page Header-->
+        <header class="masthead" style="background-image: url('{% static 'images/about-bg.jpg'%}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>Profile</h1>
+                            <span class="subheading">Hello</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% endblock header %}
+{% block content %}
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class='text-center'>
+                    <img src="{{ user.profile.avatar.url }}" alt="" style="width: 250px; height:250px; border-radius: 250px;">
+                    <h1>{{ user.first_name }} {{ user.last_name }} </h1>
+                    <p>Email: {{ user.email }}</p>
+                </div>
+                <hr class='my-4'>
+                <p class="text-center">{{ user.profile.bio }}</p>
+                <p class="text-center">Date joined: {{ user.date_joined }}</p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends 'pages/base.html' %}
+{% load static %} 
+{%block title%}Post{% endblock %}
+{% block header %}
+<header class="masthead" style="background-image: url('{{post.image.url}}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-9">
+                <div class="post-heading">
+                    <h1>{{post.title}}</h1>
+                    <span class="meta">
+                        Posted by
+                        <a href="#!">Start Bootstrap</a>
+                        on {{post.date | date:'d-M-y'}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+{% block content %}
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <a class="badge bg-secondary text-decoration-none link-light" style="border-radius: 10px" href="#!">like</a>
+                <a class="badge bg-secondary text-decoration-none link-light" style="border-radius: 10px" href="#!">share</a>
+                <p>{{post.body|safe|linebreaks}}</p>
+                <p>
+                    Placeholder text by
+                    <a href="#">Space Ipsum</a>
+                    &middot; Images by
+                    <a href="/about">Me</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}

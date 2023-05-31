@@ -1,0 +1,41 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}
+{% block header %}
+<!-- Page Header-->
+        <header class="masthead" style="background-image: url('{% static 'images/about-bg.jpg'%}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>About Me</h1>
+                            <span class="subheading">This is what I do.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% endblock header %}
+{% block content %}
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class='text-center'>
+                    <img src="{% static 'images/chimes.png' %}" alt="">
+                    <h1>Tran Nguyen Vu Duc</h1>
+                    <p style="font-style: oblique;">10 - 02 - 2002</p>
+                    <p>Phu Yen - Viet Nam</p>
+                </div>
+                <hr class='my-4'>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
+                <hr class='my-4'>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <h5>My country</h5>
+        <img src="{% static 'images/tong-quan-phu-yen.jpg' %}" alt="" style="border-radius:50px">
+    </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,93 @@
+{% extends 'pages/base.html' %} {% load static %} {%block title%}Blog{%endblock%} {% block header %}
+<header
+  class="masthead"
+  style="background-image: url('{% static 'images/post-bg.png'%}')"
+>
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="site-heading">
+          <h1>Blog</h1>
+          <span class="subheading">blogs for you</span>
+          {% if user.is_authenticated %}
+          {% if user.username == "admin" %}
+          <div style="margin-top: 5px">
+            <a
+              href="create"
+              type="button"
+              class="btn btn-info btn-sm"
+              style="border-radius: 5px">Create</a
+            >
+          </div>
+          {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock header %} {%block blog %}
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+  <div class="row gx-4 gx-lg-5 justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+      <form method="GET" action="search">
+        <div class="input-group">
+          <input
+            type="search"
+            class="form-control"
+            name="query"
+            placeholder="Search"
+          />
+          <div class="input-group-btn">
+            <button class="btn btn-primary" type="submit">Search</button>
+          </div>
+        </div>
+      </form>
+      {% for post in page_obj %}
+      <div class="post-preview">
+        <a href="{{post.id}}">
+          <h2 class="post-title">{{post.title}}</h2>
+          <h3 class="post-subtitle">{{post.description}}</h3>
+        </a>
+        <p class="post-meta">
+          Posted by
+          <a href="/about/">me</a>
+          on {{post.date | date:'d-M-y'}}
+        </p>
+      </div>
+      <!-- Divider-->
+      <hr class="my-4" />
+      {% endfor %}
+
+      <!--Paginator-->
+      <nav aria-label="Page navigation example">
+        {% if page_obj.has_other_pages %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.query %}&query={{ request.GET.query }}{% endif %}">Previous</a>
+          </li>
+          {% endif %}
+
+          {% for i in page_obj.paginator.page_range %}
+          {% if page_obj.number == i %}
+          <li class="page-item"><span class="page-link">{{i}} <span class='sr-only'></span> </span></li>
+          {% else %}
+          <li class="page-item"><a class="page-link" href='?page={{i}}{% if request.GET.query %}&query={{ request.GET.query }}{% endif %}'>{{i}}</a></li>
+          {% endif %}
+          {% endfor %}
+
+          {% if page_obj.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.query %}&query={{ request.GET.query }}{% endif %}">Next</a></li>
+          {% endif %}
+          
+        </ul>
+        {% endif %}
+      </nav>
+
+
+    </div>
+  </div>
+</div>
+{% endblock %}

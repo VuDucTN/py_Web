@@ -1,0 +1,48 @@
+{% extends 'pages/base.html' %}
+{% load static %} 
+{%block title%}Blog{% endblock%}
+{% block header %}
+<header class="masthead" style="background-image: url('{% static 'images/post-bg.png'%}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Create Blog</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+  </header>
+{% endblock header %}
+{% block content %}
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <center><h1>Create here</h1></center>
+    <form method = "post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group py-3">
+          <label>Title</label>
+          <input type="text" class="form-control" Required name="title" placeholder="Title">
+        </div>
+        <div class="form-group py-3">
+          <label>Image</label>
+          <input type="file" class="form-control" Required name="image" placeholder="">
+        </div>
+        <div class="form-group py-3">
+            <label>Description</label>
+            <input type="text" class="form-control"  Required name="description" placeholder="Description">
+          </div>
+          <div class="form-group py-3">
+            <label>Body</label>
+            <textarea type="text" class="form-control" Required name="body" placeholder="Write some thing...." style="min-height: 200px"></textarea>
+          </div>
+          <hr>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end py-2">
+        <button type="submit" class="btn btn-primary" style="border-radius: 10px">Submit</button>
+    </div>
+      </form>
+    </div>
+</div>
+</div>
+{% endblock content %}
